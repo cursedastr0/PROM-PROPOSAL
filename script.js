@@ -3,6 +3,7 @@
   let btnPos = { x: 0, y: 0 };
   let lastFlee = 0;
   let fleeFrame = null;
+  let responseSent = false;
 
   const screens = {
     question: document.getElementById("screen-question"),
@@ -22,6 +23,23 @@
     Object.values(screens).forEach((s) => s.classList.remove("active"));
     screens[name].classList.add("active");
   }
+
+  function submitResponse(chosenDate) {
+  if (responseSent) return;
+  responseSent = true;
+  if (!CONFIG.formspreeEndpoint) return;
+
+  fetch(CONFIG.formspreeEndpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      answer: "yes",
+      chosenDate: chosenDate,
+      timestamp: new Date().toLocaleString(),
+      noButtonEscapes: noEscapes,
+    }),
+  }).catch(() => {});
+}
 
   /* ── Smooth runaway "No" button ── */
   function setNoPosition(x, y) {
@@ -117,6 +135,7 @@
   function goToConfirm(label) {
     setChosenDate(label);
     showScreen("confirm");
+    submitResponse(label);
   }
 
   btnYes.addEventListener("click", () => {
