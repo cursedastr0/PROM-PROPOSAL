@@ -2,7 +2,7 @@
 
 const CONFIG = {
   herName: "you",
-formspreeEndpoint: "https://formspree.io/f/mzdnjgll"
+formspreeEndpoint: "https://formspree.io/f/mzdnjgll",
   
   dates: {
     preferred: "Sunday, July 27",
