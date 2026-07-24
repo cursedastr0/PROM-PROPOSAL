@@ -30,6 +30,6 @@ const CONFIG = {
 
   lyricsTitle: "For you",
 
-  thanksPhoto1: "images/photo1.jpg.",
-  thanksPhoto2: "images/photo2.jpg.",
+  thanksPhoto1: "images/photo1.jpg",
+  thanksPhoto2: "images/photo2.jpg",
 };
